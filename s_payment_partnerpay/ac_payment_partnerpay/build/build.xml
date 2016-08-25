@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<project name="c.build" default="build">
+    <!--Load first intershop properties                                     -->
+    <property file="${is.home}/intershop.properties"/> 
+    
+    <condition property="servicetools.home"
+               value="${KLARNA_HOME}"
+               else="${SERVICETOOLS_HOME}">
+        <and>
+            <isset property="KLARNA_HOME"/>
+            <not>
+                <equals arg1="${KLARNA_HOME}" arg2="" trim="true"/>
+            </not>
+        </and>
+    </condition>
+        
+    <!--Import second generic build file                                    -->
+    <import file="${servicetools.home}/build/shared/component/build.xml"/>   
+</project>
+

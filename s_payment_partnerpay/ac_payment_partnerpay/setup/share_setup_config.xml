@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<registry>
+    <SimpleVersion version="1.0"/>
+    <elements>
+    
+        <!--Update Mode DeleteUnit to delete component content-->        
+        <DeleteUnit name="%CARTRIDGE.ARCHIVENAME% DeleteUnit Update ComponentContent">
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/impex"/>
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/lib"/>
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/model"/>
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/edl"/>
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/pagecompile"/>
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/pipelines"/>
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/static"/>
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/templates"/>
+            <DeleteItem purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/dbinit.properties"/>
+            <DeleteItem purpose="install" toSave="true" path="system/config/cartridges/%COMPONENT.NAME%.properties"/>
+        </DeleteUnit>
+    
+        <!--Full Mode Units-->
+        <PropertyFileUnit name="%CARTRIDGE.ARCHIVENAME% PropertyFileUnit Full">
+            <PropertyFileItem type="0"
+                path="system/cartridges/cartridgelist.properties" size="0">
+                <property key="cartridges" value=" &lt;@CURRENT.VALUE@&gt; %COMPONENT.NAME%"/>
+            </PropertyFileItem>
+        </PropertyFileUnit>
+    
+    </elements>   
+</registry>

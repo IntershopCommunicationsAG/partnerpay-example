@@ -1,0 +1,22 @@
+<components xmlns="http://www.intershop.de/component/2010">
+
+	<implementation name="PartnerPayServiceDefinition" 
+			class="com.intershop.adapter.payment.partnerpay.internal.service.PartnerPayServiceDefinition" 
+			implements="ServiceDefinition" />
+
+	<!-- Registering the ServiceDefintion instance to the (global) ServiceDefinitionRegistry -->
+	<fulfill requirement="serviceDefinition" of="serviceDefinitionRegistry">
+		<instance with="ServiceDefinitionRegistry.Entry">
+			<fulfill requirement="cartridgeID" value="ac_payment_partnerpay" />
+			<fulfill requirement="groupID" value="service.group.name.Payment_Services" />
+			<fulfill requirement="parameterGroupID" value="PartnerPayService"/> 
+			<fulfill requirement="serviceDefinitionID" value="PartnerPayServiceDefinition" />
+			<fulfill requirement="localizationKeyForName" value="payment.service.displayName.PARTNERPAY" />
+			<fulfill requirement="serviceDefinition">
+				<instance with="PartnerPayServiceDefinition" />
+			</fulfill>
+			<fulfill requirement="ChainElementID" value="MonitorHandler" />
+		</instance>
+	</fulfill>
+	
+</components>

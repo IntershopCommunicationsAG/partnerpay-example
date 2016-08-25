@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.intershop.com/xml/ns/enfinity/7.0/configdef">
+	<group name="PartnerPayService">
+		<parameter name="PartnerPayPaymentService.Password" type="Password" position="10" required="true">
+			<labelKey>payment.partnerpay.paramdef.label.password</labelKey>
+			<descriptionKey>payment.partnerpay.paramdef.desc.password</descriptionKey>
+		</parameter>
+		<parameter name="PartnerPayPaymentService.Pending" type="Boolean" position="10" required="false">
+			<labelKey>payment.partnerpay.paramdef.label.pending</labelKey>
+			<descriptionKey>payment.partnerpay.paramdef.desc.pending</descriptionKey>
+		</parameter>
+	</group>
+</definitions>

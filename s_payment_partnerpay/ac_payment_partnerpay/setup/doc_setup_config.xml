@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<registry>
+    <SimpleVersion version="1.0"/>
+    <elements>
+    
+        <!--Update Mode DeleteUnit to delete component content-->        
+        <DeleteUnit name="%CARTRIDGE.ARCHIVENAME% DeleteUnit Update ComponentContent">
+            <DeleteItem recursive="true" purpose="install" toSave="true" path="system/cartridges/%COMPONENT.NAME%/release/docs"/>
+        </DeleteUnit>
+                
+    </elements>   
+</registry>

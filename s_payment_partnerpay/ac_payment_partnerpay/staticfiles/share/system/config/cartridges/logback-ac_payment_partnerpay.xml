@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<included>
+
+	<appender name="partnerpay_LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+    	</filter>
+		<File>${intershop.logfile.Directory}/partnerpay-${intershop.logfile.NamePostfix}.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${intershop.logfile.Directory}/partnerpay-${intershop.logfile.NamePostfix}.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>
+				[%date{yyyy-MM-dd HH:mm:ss.SSS Z}] %-5level ${intershop.HostName} ${intershop.InstallationID} ${intershop.ServerName} [%mdc{requestsite}] [%mdc{requestapplication}] %logger [%marker] [%mdc{request.type}] [%mdc{session.id}] [%mdc{request.uuid}] &quot;%thread&quot; %msg %ex%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.intershop.adapter.payment.partnerpay" additivity="false">
+	    <level value="TRACE" />
+	    <appender-ref ref="Error" />
+		<appender-ref ref="partnerpay_LogFile" />
+	</logger>
+
+</included>

@@ -1,0 +1,41 @@
+apply plugin: 'java-cartridge'
+apply plugin: 'static-cartridge'
+
+dependencies {
+	
+    compile group: 'com.intershop', name: 'api_service'
+    compile group: 'com.intershop.business', name: 'bc_payment'
+
+    compile group: 'com.intershop.platform', name: 'bc_repository'
+	compile group: 'com.intershop.platform', name: 'bc_service'
+    compile group: 'com.intershop.platform', name: 'configuration'
+    compile group: 'com.intershop.platform', name: 'businessobject'
+	compile group: 'com.intershop.platform', name: 'core'
+    compile group: 'com.intershop.platform', name: 'pipeline'
+	compile group: 'com.intershop.platform', name: 'isml'
+    compile group: 'com.intershop.platform', name: 'servletengine'
+	compile group: 'com.intershop.platform', name: 'pf_objectgraph'
+	compile group: 'com.intershop.platform', name: 'pf_objectgraph_guice'
+	compile group: 'com.intershop.platform', name: 'pf_property'
+    compile group: 'com.intershop.platform', name: 'pf_extension'
+    compile group: 'com.intershop.platform', name: 'ui_web_library'
+
+    compile 'org.apache.tomcat:tomcat-el-api'
+    compile 'javax.validation:validation-api'
+    compile 'aopalliance:aopalliance'
+    compile 'com.google.inject.extensions:guice-multibindings'
+    compile 'com.google.inject.extensions:guice-assistedinject'
+    compile 'com.google.code.findbugs:jsr305'
+	compile 'com.google.guava:guava'
+	compile 'com.google.inject:guice'
+	compile 'javax.inject:javax.inject'
+	compile 'javax.servlet:javax.servlet-api'
+	compile 'org.apache.commons:commons-lang3'
+    compile 'org.objenesis:objenesis'
+	compile 'org.slf4j:slf4j-api'
+    
+    compile 'junit:junit'
+    compile 'org.hamcrest:hamcrest-core'
+    compile 'org.hamcrest:hamcrest-library'
+    compile 'org.mockito:mockito-core'
+}
