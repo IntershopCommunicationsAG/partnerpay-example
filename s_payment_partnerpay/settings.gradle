@@ -1,0 +1,5 @@
+// define root proejct name
+rootProject.name = 's_payment_partnerpay'
+
+include 'ac_payment_partnerpay'
+include 'inspired-partnerpay'
