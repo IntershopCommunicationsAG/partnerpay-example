@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://www.intershop.de/component/2010">
+
+	<!-- Editor for PClasses -->
+    <instance name="PClassEditorInvoice" with="PropertyEditorConfiguration">
+        <fulfill requirement="propertyGroupMapping">
+            <instance with="PropertyEditorConfiguration.PropertyGroupMapping">
+                <fulfill requirement="propertyGroup" value="com.intershop.adapter.payment.partnerpay.capi.propgroups.LuckyNumber"/>
+                <fulfill requirement="propertyMapping">
+                    <instance with="PropertyEditorConfiguration.PropertyMapping">
+                        <fulfill requirement="property" value="luckyNumber"/>
+                        <fulfill requirement="editor"   value="com.intershop.adapter.payment.partnerpay.capi.propgroups.ui.LuckyNumberEditor"/>
+                    </instance>
+                </fulfill>
+            </instance>
+        </fulfill>
+    </instance>
+
+</components>	

@@ -1,13 +1,14 @@
 package com.intershop.adapter.payment.partnerpay.internal.service;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Function;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.intershop.adapter.payment.partnerpay.capi.propgroups.LuckyNumber;
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.ApplicabilityCheck;
 import com.intershop.api.data.payment.v1.PaymentContext;
 import com.intershop.api.service.common.v1.Result;
@@ -57,6 +58,6 @@ public class PartnerPayServiceImpl implements PaymentService, PartnerPayServiceI
     @Override
     public Collection<Class<?>> getPaymentParameterDescriptors(PaymentContext context)
     {
-        return Collections.emptyList();
+        return Arrays.asList(LuckyNumber.class);
     }
 }

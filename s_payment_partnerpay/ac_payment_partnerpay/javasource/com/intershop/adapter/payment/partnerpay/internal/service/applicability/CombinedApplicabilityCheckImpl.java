@@ -1,5 +1,6 @@
 package com.intershop.adapter.payment.partnerpay.internal.service.applicability;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class CombinedApplicabilityCheckImpl implements ApplicabilityCheck
     @Inject
     public CombinedApplicabilityCheckImpl(Set<ApplicabilityCheck> allApplicabilityChecks)
     {
-        this.allApplicabilityChecks = allApplicabilityChecks;
+        this.allApplicabilityChecks = new HashSet<>(allApplicabilityChecks);
     }
     
     @Override

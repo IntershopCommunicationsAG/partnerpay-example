@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<components xmlns="http://www.intershop.de/component/2010">
+
+	<contract name="LuckyNumberGenerator" 
+		class="com.intershop.adapter.payment.partnerpay.capi.luckynumbers.LuckyNumberGenerator"/>
+		
+</components>

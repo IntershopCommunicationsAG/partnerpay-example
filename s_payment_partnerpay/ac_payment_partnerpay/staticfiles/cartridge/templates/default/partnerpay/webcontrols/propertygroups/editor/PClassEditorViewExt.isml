@@ -1,0 +1,24 @@
+<!--- Used for the saved PII --->
+<isif condition="#(PaymentServiceBO:PaymentServiceID EQ 'KLARNA_INVOICE') OR (PaymentServiceBO:PaymentServiceID EQ 'KLARNA_INSTALLMENTS')#">
+
+	<isset name="PaymentInstrumentBOIDNoDot" value="#replace(PaymentInstrumentBO:ID, '\\.', '-')#" scope="request"/>
+
+	<div style="display:none;" id="klarna-pclass-desc-<isprint value ="#PaymentInstrumentBOIDNoDot#">">
+		<isKlarnaPClassDescription pclassdetails="#PaymentInstrumentBO:Extension("PII_PClass"):KlarnaPClassDetails#" total="#Klarna_BasketTotal#">
+	</div>
+
+ 	<!--- Shows the description of the PClass.--->
+	<script type="text/javascript">
+	$(document).ready(function() {
+    	
+	    var $descPlaceholder = $('#'#'#payment-accordion-heading2-<isprint value ="#PaymentInstrumentBOIDNoDot#">').
+	    	find('.propertygroup-editor-pclass-value-view');
+	    
+	    var $desc = $('#'#'#klarna-pclass-desc-<isprint value ="#PaymentInstrumentBOIDNoDot#">');
+	    
+	    $desc.detach().removeAttr('style');
+	    $desc.appendTo($descPlaceholder);
+	});
+	</script>
+	<!--- EO: --->
+ </isif>

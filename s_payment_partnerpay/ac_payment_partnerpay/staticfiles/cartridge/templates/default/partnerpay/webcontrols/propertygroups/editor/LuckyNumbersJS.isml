@@ -1,0 +1,35 @@
+<script type="text/javascript">
+	<!--- The script that takes the radio group and moves it into the pclasses box--->
+	<!--- There is a hidden field that contains the value of the selection, it should be moved to the UI. --->
+	$(function() {
+
+	    //the lucky number box ()
+	    var $luckyNumberBox = 
+	        	$('#'#'#payment-accordion-body-<isprint value ="#PaymentServiceIDNoDot#">').
+	    			find('.propertygroup-editor-luckynumber');
+	    
+	  	//the hidden radiogroup
+    	var $luckyNumberRadioGroup = 
+    	    $('#'#'#luckynumber-options-<isprint value ="#PaymentServiceIDNoDot#">');
+    	
+    	//attach the raio group to the 'right' place 
+    	$luckyNumberRadioGroup.detach().removeAttr('style');
+    	$luckyNumberRadioGroup.appendTo($luckyNumberBox);
+	});
+</script>
+
+
+<!--- The script that sets the value of the selection to the hidden field when the user clicks the UI.--->
+<script type="text/javascript">
+	$(document).ready(function() {
+    	$('input[name=luckynumber-option-<isprint value ="#PaymentServiceIDNoDot#">]').change(function() {
+    	  //the lucky number hidden box
+    	  var $luckyNumberHiddenField = 
+    	        	$('#'#'#payment-accordion-body-<isprint value ="#PaymentServiceIDNoDot#">').
+    	    			find('.propertygroup-editor-luckynumber-value');
+    	    
+    	  $luckyNumberHiddenField.val(this.value).trigger('change');
+    	});
+	});
+</script>
+<!--- EO: --->
