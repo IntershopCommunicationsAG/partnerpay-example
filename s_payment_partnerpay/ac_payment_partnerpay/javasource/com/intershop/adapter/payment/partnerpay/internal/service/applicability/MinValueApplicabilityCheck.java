@@ -7,12 +7,17 @@ import com.intershop.api.service.common.v1.Result;
 import com.intershop.api.service.payment.v1.Payable;
 import com.intershop.api.service.payment.v1.result.ApplicabilityResult;
 
+/**
+ * Restricts the PartnerPay in case that the value of the order is less than 30 units. 
+ */
 public class MinValueApplicabilityCheck implements ApplicabilityCheck
 {
     private static final BigDecimal MIN_VALUE = new BigDecimal(30);
     
-    public final static String APPLICABILITY_RESTRICTION_MIN_VALUE = "checkout.payment.klarna.applicability.multiple.shipping.notification";
-
+    /**
+     * the suffix of the localization key that contains the localized restriction message.
+     */
+    private final static String APPLICABILITY_RESTRICTION_MIN_VALUE = "partnerpay.min.amount";
     
     @Override
     public Result<ApplicabilityResult> getApplicability(Payable payable)
