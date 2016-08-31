@@ -14,6 +14,11 @@ import com.intershop.api.service.payment.v1.capability.Cancel;
 import com.intershop.api.service.payment.v1.capability.Capture;
 import com.intershop.api.service.payment.v1.capability.PaymentCapability;
 
+/**
+ * A component that is responsible for providing payment capabilities.
+ * 
+ * This implementation is a composition of replaceable capability factories.
+ */
 @Named("PartnerPay_PartnerPayCapabilityProvider")
 public class PartnerPayCapabilityProvider implements Function<Class<? extends PaymentCapability>, Optional<PaymentCapability>>
 {

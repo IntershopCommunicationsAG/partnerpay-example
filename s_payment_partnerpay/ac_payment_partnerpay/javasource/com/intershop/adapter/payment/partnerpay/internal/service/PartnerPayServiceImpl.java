@@ -1,6 +1,5 @@
 package com.intershop.adapter.payment.partnerpay.internal.service;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Function;
@@ -8,7 +7,6 @@ import java.util.function.Function;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.intershop.adapter.payment.partnerpay.capi.propgroups.LuckyNumber;
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.ApplicabilityCheck;
 import com.intershop.api.data.payment.v1.PaymentContext;
 import com.intershop.api.service.common.v1.Result;
@@ -26,10 +24,14 @@ public class PartnerPayServiceImpl implements PaymentService, PartnerPayServiceI
     @Inject
     @Named("PartnerPay_PartnerPayCapabilityProvider")
     private Function<Class<? extends PaymentCapability>, Optional<PaymentCapability>> capabilityProvider;
-    
+
     @Inject
     private ApplicabilityCheck applicabilityCheck;
-    
+
+    @Inject
+    @Named("PartnerPay_PartnerPayPropertyGroupProvider")
+    private Function<PaymentContext, Collection<Class<?>>> propertyGroupProvider;
+
     public PartnerPayServiceImpl(ServiceConfigurationBO serviceConfigurationBO)
     {
     }
@@ -45,7 +47,7 @@ public class PartnerPayServiceImpl implements PaymentService, PartnerPayServiceI
     {
         @SuppressWarnings("unchecked")
         T capability = (T)capabilityProvider.apply(capabilityClazz).orElse(null);
-        
+
         return capability;
     }
 
@@ -58,6 +60,6 @@ public class PartnerPayServiceImpl implements PaymentService, PartnerPayServiceI
     @Override
     public Collection<Class<?>> getPaymentParameterDescriptors(PaymentContext context)
     {
-        return Arrays.asList(LuckyNumber.class);
+        return propertyGroupProvider.apply(context);
     }
 }

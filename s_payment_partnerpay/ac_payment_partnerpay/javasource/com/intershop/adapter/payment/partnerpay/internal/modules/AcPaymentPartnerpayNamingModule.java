@@ -1,5 +1,6 @@
 package com.intershop.adapter.payment.partnerpay.internal.modules;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
 import java.util.function.Function;
@@ -17,6 +18,7 @@ import com.intershop.adapter.payment.partnerpay.internal.operations.authorize.Au
 import com.intershop.adapter.payment.partnerpay.internal.operations.cancel.CancelOperationImpl;
 import com.intershop.adapter.payment.partnerpay.internal.operations.capture.CaptureOperationImpl;
 import com.intershop.adapter.payment.partnerpay.internal.service.PartnerPayCapabilityProvider;
+import com.intershop.adapter.payment.partnerpay.internal.service.PartnerPayPropertyGroupProvider;
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.ApplicabilityCheck;
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.CombinedApplicabilityCheckImpl;
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.MaxValueApplicabilityCheck;
@@ -30,6 +32,7 @@ import com.intershop.adapter.payment.partnerpay.internal.service.cancel.CancelMa
 import com.intershop.adapter.payment.partnerpay.internal.service.capture.CaptureFactory;
 import com.intershop.adapter.payment.partnerpay.internal.service.capture.CaptureFactoryImpl;
 import com.intershop.adapter.payment.partnerpay.internal.service.config.PartnerPayServiceConfigSupplier;
+import com.intershop.api.data.payment.v1.PaymentContext;
 import com.intershop.api.service.payment.v1.capability.PaymentCapability;
 import com.intershop.beehive.configuration.capi.common.Configuration;
 import com.intershop.beehive.core.capi.naming.AbstractNamingModule;
@@ -85,5 +88,11 @@ public class AcPaymentPartnerpayNamingModule extends AbstractNamingModule
         {
         }).annotatedWith(PartnerPayServiceConfigSupplier.class.getAnnotation(Named.class))
                         .to(PartnerPayServiceConfigSupplier.class);
+        
+        //property groups
+        bind(new TypeLiteral<Function<PaymentContext, Collection<Class<?>>>>()
+        {
+        }).annotatedWith(PartnerPayPropertyGroupProvider.class.getAnnotation(Named.class))
+                        .to(PartnerPayPropertyGroupProvider.class);
     }
 }
