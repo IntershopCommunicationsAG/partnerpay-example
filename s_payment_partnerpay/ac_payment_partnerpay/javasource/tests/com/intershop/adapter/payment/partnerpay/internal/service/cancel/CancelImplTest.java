@@ -3,9 +3,7 @@ package tests.com.intershop.adapter.payment.partnerpay.internal.service.cancel;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.function.Supplier;
@@ -28,6 +26,7 @@ import com.intershop.api.data.payment.v1.EnumPaymentTransactionStatus;
 import com.intershop.api.data.payment.v1.PaymentContext;
 import com.intershop.api.data.payment.v1.PaymentHistoryEntry;
 import com.intershop.api.data.payment.v1.PaymentTransaction;
+import com.intershop.api.service.payment.v1.capability.Authorize;
 import com.intershop.beehive.objectgraph.guice.capi.test.MockInjector;
 import com.intershop.beehive.objectgraph.guice.capi.test.MockInjector.Bind;
 
@@ -64,12 +63,12 @@ public class CancelImplTest
     private PaymentTransaction mockPaymentTransaction;
 
     @Mock
-    private PaymentHistoryEntry mockPaymentHistoryEntry1, mockPaymentHistoryEntry2;
+    private PaymentHistoryEntry mockPaymentHistoryEntry;
 
     // some more test objects which seem to be more real
     private final int TEST_MAX_ALLOWED_TIME = 3;
 
-    private Date testDateCreation, testDateOneEvent, testDateWhenBefore3, testDateWhenAfter3, testDateWhen3;
+    private Date testDateCreation, testDateWhenBefore3, testDateWhenAfter3, testDateWhen3;
 
     @Before
     public void setUp()
@@ -79,8 +78,8 @@ public class CancelImplTest
 
         when(mockMaxAllowedTimeSupplier.get()).thenReturn(TEST_MAX_ALLOWED_TIME);
 
-        when(mockPaymentTransaction.getPaymentHistoryEntries())
-                        .thenReturn(Arrays.asList(mockPaymentHistoryEntry1, mockPaymentHistoryEntry2));
+        when(mockPaymentTransaction.getLatestPaymentHistoryEntry(Authorize.class.getSimpleName()))
+                        .thenReturn(mockPaymentHistoryEntry);
 
         initDates();
     }
@@ -104,12 +103,8 @@ public class CancelImplTest
         time.add(Calendar.HOUR, 2);
         testDateWhenAfter3 = new Date(time.getTimeInMillis());
 
-        time.add(Calendar.HOUR, 1234);
-        testDateOneEvent = new Date(time.getTimeInMillis());
-
         // event times
-        when(mockPaymentHistoryEntry1.getEventTime()).thenReturn(testDateCreation);
-        when(mockPaymentHistoryEntry2.getEventTime()).thenReturn(testDateOneEvent);
+        when(mockPaymentHistoryEntry.getEventTime()).thenReturn(testDateCreation);
     }
     
     @Test
@@ -142,8 +137,8 @@ public class CancelImplTest
     @Test
     public void testCanBeCancelled_Status()
     {
-        when(mockPaymentTransaction.getPaymentHistoryEntries()).thenReturn(Collections.emptyList());
-
+        when(mockPaymentHistoryEntry.getEventTime()).thenReturn(null);
+        
         EnumSet<EnumPaymentTransactionStatus> canBeCancelled = EnumSet.of(EnumPaymentTransactionStatus.CREATED,
                         EnumPaymentTransactionStatus.AUTHORIZED);
         EnumSet<EnumPaymentTransactionStatus> cannotBeCancelled = EnumSet.complementOf(canBeCancelled);

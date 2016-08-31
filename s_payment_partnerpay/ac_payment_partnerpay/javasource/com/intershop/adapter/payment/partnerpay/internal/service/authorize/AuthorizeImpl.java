@@ -7,8 +7,13 @@ import javax.inject.Inject;
 import com.intershop.adapter.payment.partnerpay.capi.operations.authorize.AuthorizeOperation;
 import com.intershop.adapter.payment.partnerpay.capi.operations.authorize.AuthorizeRequest;
 import com.intershop.adapter.payment.partnerpay.capi.operations.authorize.AuthorizeResponse;
+import com.intershop.adapter.payment.partnerpay.capi.propgroups.LuckyNumber;
 import com.intershop.api.data.common.v1.Money;
+import com.intershop.api.data.common.v1.changeable.IntegerAttribute;
 import com.intershop.api.data.payment.v1.PaymentContext;
+import com.intershop.api.data.payment.v1.PaymentInstrument;
+import com.intershop.api.data.payment.v1.PaymentParameter;
+import com.intershop.api.data.payment.v1.PaymentParameterGroup;
 import com.intershop.api.data.payment.v1.PaymentTransaction;
 import com.intershop.api.service.common.v1.Result;
 import com.intershop.api.service.payment.v1.Payable;
@@ -48,12 +53,46 @@ public class AuthorizeImpl implements Authorize
             // trans ID and amount
             result.getOutput().setTransactionID(resp.getTransactionID());
             result.getOutput().setTransactionAmount(amount);
+            recordLuckyNumber(result, paymentContext);
+            
             // infos
             Logger.debug(this, "Authorization successful. Payable {}, state {}. Transaction ID", getDebugId(payable),
                             result.getState(), result.getOutput().getTransactionID());
         }
 
         return result;
+    }
+    
+    private void recordLuckyNumber(Result<AuthorizationResult> result, PaymentContext paymentContext)
+    {
+        PaymentInstrument pi = paymentContext.getPaymentInstrument();
+        
+        Integer luckyNumber = getLuckyNumber(pi);
+        if (luckyNumber != null)
+        {
+            result.getOutput().put(new IntegerAttribute("LuckyNumber", luckyNumber));
+        }
+        else
+        {
+            Logger.error(this, "There is no lucky number chosen during authorization. This should not happen normally! Payment Instrument {}", pi.getId());
+        }
+    }
+    
+    private Integer getLuckyNumber(PaymentInstrument pi)
+    {
+        PaymentParameterGroup paymentParameterGroup = pi.getPaymentParameterGroup(LuckyNumber.class.getName());
+        if (paymentParameterGroup != null)
+        {
+            PaymentParameter param = paymentParameterGroup.getParameter("luckyNumber");
+            if (param != null)
+            {
+                Integer unsafe = (Integer)param.getValue();
+                return unsafe;
+            }
+        }
+        
+        Logger.error(this, "There is no property luckyNumber for pi {}", pi.getId());
+        return null;
     }
 
     @Override
