@@ -77,6 +77,7 @@ public class AcPaymentPartnerpayNamingModule extends AbstractNamingModule
 
         // Checks for applicability of the payment methods. You may add additional bindings.
         bind(ApplicabilityCheck.class).to(CombinedApplicabilityCheckImpl.class).in(Singleton.class);
+        
         Multibinder<ApplicabilityCheck> partnerPayApplicabilityBinder = Multibinder.newSetBinder(binder(),
                         ApplicabilityCheck.class);
         partnerPayApplicabilityBinder.addBinding().to(MinValueApplicabilityCheck.class).in(Singleton.class);

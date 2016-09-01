@@ -1,16 +1,21 @@
 package com.intershop.adapter.payment.partnerpay.internal.service.capture;
 
+import javax.inject.Inject;
+
+import com.google.inject.Injector;
 import com.intershop.api.service.payment.v1.capability.Capture;
-import com.intershop.beehive.core.capi.naming.NamingMgr;
 
 public class CaptureFactoryImpl implements CaptureFactory
 {
+    @Inject
+    private Injector injector;
+    
     @Override
     public Capture createCapture()
     {
         Capture ret = new CaptureImpl();
         
-        NamingMgr.getObjectGraph().injectMembers(ret);
+        injector.injectMembers(ret);
         
         return ret;
     }
