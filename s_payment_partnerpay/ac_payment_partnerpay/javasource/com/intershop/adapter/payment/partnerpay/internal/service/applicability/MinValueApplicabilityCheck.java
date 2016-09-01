@@ -2,6 +2,7 @@ package com.intershop.adapter.payment.partnerpay.internal.service.applicability;
 
 import java.math.BigDecimal;
 
+import com.intershop.adapter.payment.partnerpay.capi.service.applicability.ApplicabilityCheck;
 import com.intershop.api.data.common.v1.Money;
 import com.intershop.api.service.common.v1.Result;
 import com.intershop.api.service.payment.v1.Payable;

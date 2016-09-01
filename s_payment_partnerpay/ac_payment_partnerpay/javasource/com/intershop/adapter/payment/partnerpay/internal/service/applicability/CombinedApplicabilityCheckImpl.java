@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import com.intershop.adapter.payment.partnerpay.capi.service.applicability.ApplicabilityCheck;
 import com.intershop.api.service.common.v1.Result;
 import com.intershop.api.service.payment.v1.Payable;
 import com.intershop.api.service.payment.v1.result.ApplicabilityResult;
