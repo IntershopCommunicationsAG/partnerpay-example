@@ -6,9 +6,9 @@ import java.util.function.Function;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.intershop.adapter.payment.partnerpay.internal.service.authorize.AuthorizeFactory;
-import com.intershop.adapter.payment.partnerpay.internal.service.cancel.CancelFactory;
-import com.intershop.adapter.payment.partnerpay.internal.service.capture.CaptureFactory;
+import com.intershop.adapter.payment.partnerpay.capi.service.authorize.AuthorizeFactory;
+import com.intershop.adapter.payment.partnerpay.capi.service.cancel.CancelFactory;
+import com.intershop.adapter.payment.partnerpay.capi.service.capture.CaptureFactory;
 import com.intershop.api.service.payment.v1.capability.Authorize;
 import com.intershop.api.service.payment.v1.capability.Cancel;
 import com.intershop.api.service.payment.v1.capability.Capture;

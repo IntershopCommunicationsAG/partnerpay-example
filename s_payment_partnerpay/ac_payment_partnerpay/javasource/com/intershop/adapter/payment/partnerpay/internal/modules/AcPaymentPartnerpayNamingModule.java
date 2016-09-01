@@ -15,6 +15,9 @@ import com.intershop.adapter.payment.partnerpay.capi.operations.authorize.Author
 import com.intershop.adapter.payment.partnerpay.capi.operations.cancel.CancelOperation;
 import com.intershop.adapter.payment.partnerpay.capi.operations.capture.CaptureOperation;
 import com.intershop.adapter.payment.partnerpay.capi.service.applicability.ApplicabilityCheck;
+import com.intershop.adapter.payment.partnerpay.capi.service.authorize.AuthorizeFactory;
+import com.intershop.adapter.payment.partnerpay.capi.service.cancel.CancelFactory;
+import com.intershop.adapter.payment.partnerpay.capi.service.capture.CaptureFactory;
 import com.intershop.adapter.payment.partnerpay.internal.operations.authorize.AuthorizeOperationImpl;
 import com.intershop.adapter.payment.partnerpay.internal.operations.cancel.CancelOperationImpl;
 import com.intershop.adapter.payment.partnerpay.internal.operations.capture.CaptureOperationImpl;
@@ -23,13 +26,10 @@ import com.intershop.adapter.payment.partnerpay.internal.service.PartnerPayPrope
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.CombinedApplicabilityCheckImpl;
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.MaxValueApplicabilityCheck;
 import com.intershop.adapter.payment.partnerpay.internal.service.applicability.MinValueApplicabilityCheck;
-import com.intershop.adapter.payment.partnerpay.internal.service.authorize.AuthorizeFactory;
 import com.intershop.adapter.payment.partnerpay.internal.service.authorize.AuthorizeFactoryImpl;
 import com.intershop.adapter.payment.partnerpay.internal.service.cancel.CancelDateSupplier;
-import com.intershop.adapter.payment.partnerpay.internal.service.cancel.CancelFactory;
 import com.intershop.adapter.payment.partnerpay.internal.service.cancel.CancelFactoryImpl;
 import com.intershop.adapter.payment.partnerpay.internal.service.cancel.CancelMaxAllowedTimeSupplier;
-import com.intershop.adapter.payment.partnerpay.internal.service.capture.CaptureFactory;
 import com.intershop.adapter.payment.partnerpay.internal.service.capture.CaptureFactoryImpl;
 import com.intershop.adapter.payment.partnerpay.internal.service.config.PartnerPayServiceConfigSupplier;
 import com.intershop.api.data.payment.v1.PaymentContext;

@@ -1,4 +1,4 @@
-package com.intershop.adapter.payment.partnerpay.internal.service.cancel;
+package com.intershop.adapter.payment.partnerpay.capi.service.cancel;
 
 import com.intershop.api.service.payment.v1.capability.Cancel;
 

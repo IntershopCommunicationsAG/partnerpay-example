@@ -1,4 +1,4 @@
-package com.intershop.adapter.payment.partnerpay.internal.service.capture;
+package com.intershop.adapter.payment.partnerpay.capi.service.capture;
 
 import com.intershop.api.service.payment.v1.capability.Capture;
 
