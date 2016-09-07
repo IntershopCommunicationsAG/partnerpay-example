@@ -24,7 +24,7 @@ public class AuthorizeOperationImpl implements AuthorizeOperation
     @Override
     public AuthorizeResponse execute(AuthorizeRequest req)
     {
-        // mimics remote communication. Here normally some REST call or XML-RPC, or something else should similar should
+        // mimics remote communication. Here normally some REST call or XML-RPC, or something else similar will
         // be called.
 
         Configuration config = configSupplier.get();
@@ -35,11 +35,14 @@ public class AuthorizeOperationImpl implements AuthorizeOperation
 
         if (!"1234".equals(password))
         {
+            //fail if the password is not correct
+            //please, do not do that at work :-)
             resp.setErrorCode(AuthorizeResponse.EnumErrorCodes.ERROR_AUTH.name());
         }
         else
         {
             Boolean pending = config.getBoolean(PartnerPayServiceConfigPrams.PENDING.getName(), Boolean.FALSE);
+            
             resp.setPending(pending);
             resp.setTransactionID(uuidGen.createUUIDString());
         }

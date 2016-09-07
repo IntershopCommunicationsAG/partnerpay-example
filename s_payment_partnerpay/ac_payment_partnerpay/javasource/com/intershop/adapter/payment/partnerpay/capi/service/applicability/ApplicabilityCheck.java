@@ -8,6 +8,7 @@ import com.intershop.api.service.payment.v1.result.ApplicabilityResult;
  * Describes an applicability check. An implementation may decide if the 
  * payment service is applicable for the given payable. 
  */
+@FunctionalInterface
 public interface ApplicabilityCheck
 {
     /**

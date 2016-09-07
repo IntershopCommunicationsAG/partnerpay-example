@@ -5,6 +5,7 @@ import com.intershop.api.service.payment.v1.capability.Capture;
 /**
  * Describes a factory responsible for the creation of a capture capability. 
  */
+@FunctionalInterface
 public interface CaptureFactory
 {
     /**

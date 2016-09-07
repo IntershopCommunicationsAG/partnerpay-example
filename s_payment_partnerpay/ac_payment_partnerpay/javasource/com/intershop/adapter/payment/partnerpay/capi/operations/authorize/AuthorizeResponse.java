@@ -1,7 +1,7 @@
 package com.intershop.adapter.payment.partnerpay.capi.operations.authorize;
 
 /**
- * Encapsulates all available  authorize response.
+ * Encapsulates all available information in an authorization response.
  */
 public class AuthorizeResponse {
 

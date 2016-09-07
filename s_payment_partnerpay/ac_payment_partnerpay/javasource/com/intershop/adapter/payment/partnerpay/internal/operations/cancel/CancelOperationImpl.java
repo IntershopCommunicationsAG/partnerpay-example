@@ -13,7 +13,7 @@ public class CancelOperationImpl implements CancelOperation
     @Override
     public CancelResponse execute(CancelRequest req)
     {
-        // mimics remote communication. Here normally some REST call or XML-RPC, or something else should similar should
+        // mimics remote communication. Here normally some REST call or XML-RPC, or something else should similar will
         // be called.
         
         PaymentTransaction pt = Objects.requireNonNull(req.getPaymentTransaction());

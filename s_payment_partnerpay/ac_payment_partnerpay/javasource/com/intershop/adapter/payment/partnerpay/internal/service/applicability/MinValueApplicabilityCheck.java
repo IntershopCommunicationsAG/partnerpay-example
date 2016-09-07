@@ -1,4 +1,4 @@
-package com.intershop.adapter.payment.partnerpay.internal.service.applicability;
+ package com.intershop.adapter.payment.partnerpay.internal.service.applicability;
 
 import java.math.BigDecimal;
 

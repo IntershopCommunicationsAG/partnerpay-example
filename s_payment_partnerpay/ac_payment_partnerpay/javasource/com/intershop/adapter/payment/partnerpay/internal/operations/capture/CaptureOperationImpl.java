@@ -19,7 +19,7 @@ public class CaptureOperationImpl implements CaptureOperation
     @Override
     public CaptureResponse execute(CaptureRequest req)
     {
-        // mimics remote communication. Here normally some REST call or XML-RPC, or something else should similar should
+        // mimics remote communication. Here normally some REST call or XML-RPC, or something else should similar will
         // be called.
 
         PaymentTransaction pt = Objects.requireNonNull(req.getPaymentTransaction());
