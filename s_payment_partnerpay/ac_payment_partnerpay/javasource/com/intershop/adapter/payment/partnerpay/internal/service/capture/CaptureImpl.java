@@ -1,7 +1,5 @@
 package com.intershop.adapter.payment.partnerpay.internal.service.capture;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 
 import com.intershop.adapter.payment.partnerpay.capi.operations.capture.CaptureOperation;
@@ -36,16 +34,5 @@ public class CaptureImpl implements Capture
         res.setState(Result.SUCCESS);
 
         return res;
-    }
-
-    @Override
-    public Result<CaptureResult> onCaptureNotification(PaymentContext context, Payable payable,
-                    Map<String, Object> parameters)
-    {
-        Result<CaptureResult> result = new Result<CaptureResult>(new CaptureResult());
-        result.setState("Failure");
-        result.addError("CaptureNotificationsNotSupported", "{payment.error.CaptureNotificationsNotSupported}");
-
-        return result;
     }
 }
