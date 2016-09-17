@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<components xmlns="http://www.intershop.de/component/2010">
-    <fulfill requirement="selectedCartridge" of="intershop.SLDSystem.Cartridges" value="ac_payment_partnerpay"/>
-    <fulfill requirement="selectedCartridge" of="intershop.EnterpriseBackoffice.Cartridges" value="ac_payment_partnerpay"/>
-    <fulfill requirement="selectedCartridge" of="intershop.B2CResponsive.Cartridges" value="ac_payment_partnerpay"/>
-    <fulfill requirement="selectedCartridge" of="intershop.SMBResponsive.Cartridges" value="ac_payment_partnerpay"/>
-</components>
