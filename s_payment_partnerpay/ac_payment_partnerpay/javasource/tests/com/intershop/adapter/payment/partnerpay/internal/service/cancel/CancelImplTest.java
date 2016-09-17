@@ -110,12 +110,15 @@ public class CancelImplTest
     @Test
     public void testCancel()
     {
+        //executes the cancel capability with a mocked payment context
         cancelToTest.cancel(mockPaymentContext, null);
         
+        //creates a mockito capture so that we can examine the arguments passed to the cancel op
         ArgumentCaptor<CancelRequest> requestCaptor = ArgumentCaptor.forClass(CancelRequest.class);
         
         verify(mockCancelOp).execute(requestCaptor.capture());
         
+        //check that the cancel request is created correctly
         CancelRequest request = requestCaptor.getValue();
         
         Assert.assertEquals(mockPaymentTransaction, request.getPaymentTransaction());
@@ -124,27 +127,38 @@ public class CancelImplTest
     @Test
     public void testCanBeCancelled_Dates()
     {
+        //test if the transaction can be cancelled 
+        //a. 2h       after capture (possible)
+        //b. 2h+1h=3h after capture (possible)
+        //c. 3h+2h=5h after capture (impossible)
+        
+        //a)
         when(mockCancelDateSupplier.get()).thenReturn(testDateWhenBefore3);
         Assert.assertTrue("The cancel request is less than 3 hours after the creation!", cancelToTest.canBeCancelled(mockPaymentContext));
         
-        when(mockCancelDateSupplier.get()).thenReturn(testDateWhenAfter3);
-        Assert.assertFalse("The cancel request is more than 3 hours after the creation!", cancelToTest.canBeCancelled(mockPaymentContext));
-        
+        //b)
         when(mockCancelDateSupplier.get()).thenReturn(testDateWhen3);
         Assert.assertTrue("The cancel request is 3 hours after the creation!", cancelToTest.canBeCancelled(mockPaymentContext));
+        
+        //c)
+        when(mockCancelDateSupplier.get()).thenReturn(testDateWhenAfter3);
+        Assert.assertFalse("The cancel request is more than 3 hours after the creation!", cancelToTest.canBeCancelled(mockPaymentContext));
     }
 
     @Test
     public void testCanBeCancelled_Status()
     {
+        //tests if the transaction can be cancelled depending on the transaction status
+        //created and authorized - can
+        //the remaining - captured,  cancelled,  refunded - cannot
         when(mockPaymentHistoryEntry.getEventTime()).thenReturn(null);
         
         EnumSet<EnumPaymentTransactionStatus> canBeCancelled = EnumSet.of(EnumPaymentTransactionStatus.CREATED,
                         EnumPaymentTransactionStatus.AUTHORIZED);
         EnumSet<EnumPaymentTransactionStatus> cannotBeCancelled = EnumSet.complementOf(canBeCancelled);
 
-        doTestCanBeCancelledStatus(canBeCancelled, true);
-        doTestCanBeCancelledStatus(cannotBeCancelled, false);
+        doTestCanBeCancelledStatus(canBeCancelled, true);//CAN
+        doTestCanBeCancelledStatus(cannotBeCancelled, false);//CANNOT
     }
 
     private void doTestCanBeCancelledStatus(EnumSet<EnumPaymentTransactionStatus> statuses, boolean expected)
