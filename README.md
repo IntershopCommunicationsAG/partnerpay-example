@@ -1,2 +1,4 @@
-# partnerpay
-A sample payment method that will be discussed on the developer conference in September, 2016
+#Welcome
+
+Details about PartnerPay are hosted at [GitHub Pages](https://pages.github.com/)
+Click [here](https://intershopcommunicationsag.github.io/partnerpay-example/) to see more.
