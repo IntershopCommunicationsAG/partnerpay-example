@@ -128,9 +128,9 @@ public class CancelImplTest
     public void testCanBeCancelled_Dates()
     {
         //test if the transaction can be cancelled 
-        //a. 2h       after capture (possible)
-        //b. 2h+1h=3h after capture (possible)
-        //c. 3h+2h=5h after capture (impossible)
+        //a.       2h after authorize (  possible)
+        //b. 2h+1h=3h after authorize (  possible)
+        //c. 3h+2h=5h after authorize (impossible)
         
         //a)
         when(mockCancelDateSupplier.get()).thenReturn(testDateWhenBefore3);
