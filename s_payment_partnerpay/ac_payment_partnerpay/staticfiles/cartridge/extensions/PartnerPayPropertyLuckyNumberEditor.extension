@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extensionpoint:ExtensionPointModel xmlns:extensionpoint="http://www.intershop.de/extensionpoint/2011"
+    name="PartnerPayPropertyLuckyNumberEditor">
+  <extensionBindings type="java" extensionPoint="com.intershop.ui.web.capi.property.editor.Editor-PropertyEditor.register"
+      extension="com.intershop.adapter.payment.partnerpay.capi.propgroups.ui.LuckyNumberEditor"/>
+  <extensionBindings type="isml" extensionPoint="webcontrols/propertygroups/PropertyEditor-Editors"
+      extension="partnerpay/webcontrols/propertygroups/editor/LuckyNumberEditor.isml"/>
+</extensionpoint:ExtensionPointModel>

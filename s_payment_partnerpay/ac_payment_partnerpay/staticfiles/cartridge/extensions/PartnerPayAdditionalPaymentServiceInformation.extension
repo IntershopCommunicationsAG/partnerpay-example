@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extensionpoint:ExtensionPointModel xmlns:extensionpoint="http://www.intershop.de/extensionpoint/2011"
+    name="PartnerPayAdditionalPaymentServiceInformation">
+  <extensionBindings type="isml" extensionPoint="checkout/payment/CheckoutPayment-AdditionalPaymentServiceInformation"
+      extension="partnerpay/webcontrols/propertygroups/editor/LuckyNumberEditorExt"
+      priority="10"/>
+</extensionpoint:ExtensionPointModel>
